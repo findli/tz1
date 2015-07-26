@@ -352,7 +352,7 @@ class Autoloader extends \framework\Psr4AutoloaderClass
 //			echo 'substr(' . $path . ', ' . $len . ') === ' . $k1;
 //			echo '<br>';
 			if ( substr( $path, 0, $len ) === $k1 ) {
-				$path = str_replace( $k1, $v1[ 0 ], $path );
+				$path = str_replace('\\', '/', str_replace( $k1, $v1[ 0 ], $path ));
 			}
 		}
 

@@ -17,23 +17,23 @@ use framework\AbsIntPar\Registry;
 
 class ApplicationHelper extends Registry
 {
-	private static $params = [ ];
+	private static $config = [ ];
 
-	function init( $params = NULL )
+	function init( $config = NULL )
 	{
-		if ( !is_null( $params ) && is_array( $params ) ) {
-			self::$params = $params;
+		if ( !is_null( $config ) && is_array( $config ) ) {
+			self::$config = $config;
 		}
 	}
 
 	static function set( $k1, $v1 )
 	{
-		self::$params[ $k1 ] = $v1;
+		self::$config[ $k1 ] = $v1;
 	}
 
 	static function get( $k1 )
 	{
-		return self::$params[ $k1 ];
+		return self::$config[ $k1 ];
 	}
 
 } 

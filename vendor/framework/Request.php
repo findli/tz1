@@ -20,14 +20,25 @@ use framework\AbsIntPar\Registry;
 class Request extends Registry
 {
 
-	public static function get( $key )
+	public static function getGet( $key )
 	{
 		return ( isset( $_GET[ $key ] ) ) ? htmlentities( $_GET[ $key ] ) : NULL;
 	}
 
-	public static function post( $key )
+	public static function getPost( $key )
 	{
 		return ( isset( $_POST[ $key ] ) ) ? htmlentities( $_POST[ $key ] ) : NULL;
+	}
+
+	public static function getParam( $key )
+	{
+		if ( isset( $_GET[ $key ] ) ) {
+			return ( $_GET[ $key ] );
+		} elseif ( isset( $_POST[ $key ] ) ) {
+			return ( $_POST[ $key ] );
+		}
+
+		return NULL;
 	}
 
 	function getControllerClass()
@@ -54,5 +65,14 @@ class Request extends Registry
 	static function getType()
 	{
 		return $_SERVER[ 'REQUEST_METHOD' ];
+	}
+
+	public static function getParams()
+	{
+		if ( self::getType() === 'GET' ) {
+			return $_GET;
+		} else {
+
+		}
 	}
 }

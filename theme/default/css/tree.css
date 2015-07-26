@@ -1,0 +1,28 @@
+
+.sidebar {
+    border-right: 1px dashed #888;
+    padding-top: 30px;
+}
+
+.sidebar nav ul {
+    padding: 0;
+    margin: 0;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, .2);
+    list-style: none;
+}
+
+.sidebar nav ul li a {
+    text-decoration: none;
+    color: #eee;
+    background: #bbb;
+    display: block;
+    width: 140px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    margin-bottom: 1px;
+}
+
+.sidebar nav ul li a:hover {
+    background: #aaa;
+}

@@ -10,11 +10,11 @@ namespace model;
 
 use framework\Db\Mongo\Mongo;
 
-class Categories extends Mongo
+class Users extends Mongo
 {
 	function collectionName()
 	{
-		return 'categories';
+		return 'users';
 	}
 
 	/**
@@ -24,7 +24,7 @@ class Categories extends Mongo
 	{
 		return [
 			// username and password are both required
-			[ [ 'username', 'password' ], 'required' ],
+			[ [ 'email', 'password' ], 'required' ],
 			// password is validated by validatePassword()
 			[ 'password', 'validatePassword' ],
 			// rememberMe must be a boolean value

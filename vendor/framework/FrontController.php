@@ -14,20 +14,20 @@ require_once 'Base.php';
 class FrontController extends Base
 {
 
-	public static function run()
+	public static function run($config)
 	{
 
 		$main = new FrontController();
-		$main->init();
+		$main->init($config);
 		$main->handleRequest();
 	}
 
-	function init()
+	function init($config)
 	{
 		Autoloader::instance()
 		          ->registerAutoloader();
 		ApplicationHelper::instance()
-		                 ->init();
+		                 ->init($config);
 	}
 
 	function handleRequest()
@@ -35,6 +35,5 @@ class FrontController extends Base
 		$request = new Request();
 		$cmd     = ( new CommandResolver() )->getCommand( $request );
 		$cmd->execute( $request );
-
 	}
 }

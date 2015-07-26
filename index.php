@@ -7,13 +7,12 @@
  */
 
 require( 'vendor/framework/FrontController.php' );
-
+$config = require_once( 'config.php' );
 /*
  * initialize app
  */
 //echo '<pre>';
 //print_r($_SERVER);
 //die;
-$params          = [ 'app_name' => 'task_manager' ];
-$FrontController = new framework\FrontController( $params );
-$FrontController->run();
+$FrontController = new framework\FrontController();
+$FrontController->run( $config );

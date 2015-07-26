@@ -1,7 +1,19 @@
+Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+Header set Pragma "no-cache"
+Header set Expires "Web, 11 Jan 1955 00:00:00 GMT"
 RewriteEngine on
 
-# If a directory or a file exists, use it directly
+#RewriteBase /
+
+RewriteRule \.(jpg|png|gif|js|css)$ - [L]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-# Otherwise forward it to index.php
+
 RewriteRule . index.php
+
+AddDefaultCharset UTF-8
+
+<IfModule mod_php5.c>
+  php_value short_open_tag 1
+</IfModule>

@@ -34,4 +34,11 @@ class Base
 		}
 	}
 
+	static function getClass( $path )
+	{
+		$t1 = explode( '\\', $path );
+
+		return $t1[ count( $t1 ) - 1 ];
+	}
+
 } 

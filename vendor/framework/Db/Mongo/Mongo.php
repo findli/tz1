@@ -15,17 +15,6 @@ class Mongo extends AMongo
 	public $attributes;
 	public $_id = NULL;
 
-
-	public function load( $data, $formName = NULL )
-	{
-		$collectionName = static::collectionName();
-		if ( empty( $data[ ucfirst( $collectionName ) ] ) ) {
-			$this->attributes = $data;
-		} else {
-			$this->attributes = $data[ ucfirst( $collectionName ) ];
-		}
-	}
-
 	public function save( $runValidation = TRUE, $attributes = NULL )
 	{
 		if ( is_null( $attributes ) ) {
@@ -63,6 +52,7 @@ class Mongo extends AMongo
 		}
 
 		$this->params = $this->_collection->findOne( [ '_id' => $id ] );
+
 		return $this;
 	}
 
@@ -71,6 +61,7 @@ class Mongo extends AMongo
 		$this->ensure( is_array( $query ), 'DbError', NULL );
 
 		$this->params = $this->_collection->find( $query, $fields );
+
 		return $this;
 	}
 
@@ -82,6 +73,7 @@ class Mongo extends AMongo
 		} else {
 			$this->params = $this->_collection->findOne( $query );
 		}
+
 		return $this;
 	}
 

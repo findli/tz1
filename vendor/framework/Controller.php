@@ -47,12 +47,20 @@ class Controller extends Base
 		$action = 'action' . ucfirst( $action );
 		$this->ensure( method_exists( $this, $action ), 'Http404', '404: Action not found!' );
 		$this->applyFilters( $action );
-		$this->$action();
+		$method        = new \ReflectionMethod( $this, $action );
+		$requestParams = $method->getParameters();
+        $funcParams    = [ ];
+        foreach ( $requestParams as $k1 => $v1 ) {
+            if ( Request::getParam( $v1->name ) ) {
+                $funcParams[ $v1->name ] = Request::getParam( $v1->name );
+            }
+        }
+		call_user_func_array( [ $this, $action ], $funcParams );
 	}
 
 	protected function render( $view, $params = [ ] )
 	{
-		$filename = Autoloader::resolvePath( '\theme\\' . 'default/' . $view );
+		$filename = Autoloader::resolvePath( '\theme\\' . 'default/view/' . $view );
 		$this->ensure( is_file( $filename ), 'FileNotFound', 'wrong view: ' . $view );
 		extract( $params );
 		include_once $filename;
@@ -60,7 +68,7 @@ class Controller extends Base
 
 	public function getFormUri()
 	{
-		$uri = Request::getController() . '/' . Request::getAction();
+		$uri = '/' . Request::getController() . '/' . Request::getAction();
 
 		return $uri;
 	}

@@ -17,4 +17,9 @@ return [
 	'modules'    => [
 		'/frontend/modules/',
 	],
+	'DB_HOST' => 'localhost',
+	'DB_NAME' => '3',
+	'DB_USER' => 'root',
+	'DB_PASSWORD' => '1234',
+
 ];

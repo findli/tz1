@@ -1,4 +1,5 @@
-<?php
+<?
+require_once( 'lib/tree.php' );
 /**
  * Created by PhpStorm.
  * User: ya
